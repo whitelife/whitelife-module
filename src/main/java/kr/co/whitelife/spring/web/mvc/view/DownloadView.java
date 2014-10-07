@@ -46,7 +46,7 @@ public class DownloadView extends AbstractCommonView {
 		}
 
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
-        response.setHeader("Content-Transfer-Encoding", "binary");
+		response.setHeader("Content-Transfer-Encoding", "binary");
 	}
 
 	/**
