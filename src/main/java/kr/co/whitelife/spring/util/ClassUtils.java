@@ -1,6 +1,5 @@
 package kr.co.whitelife.spring.util;
 
-import kr.co.whitelife.spring.model.Common;
 
 /**
  * Class Utils
@@ -26,7 +25,7 @@ public class ClassUtils {
 		Class<?> clazz = obj.getClass();
 
 		while(clazz != null) {
-			if (clazz == Common.class) {
+			if (clazz == targetClazz) {
 				return true;
 			}
 
