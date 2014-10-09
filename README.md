@@ -19,3 +19,26 @@ Documentation
 - HttpSessionCheckingListener
 - AjaxView
 - DownloadView
+
+Aspect
+---
+
+#### CommonLoggingAspect
+
+Spring WEB MVC 개발 시 Controller Method 를 Target 으로 하여, HttpServletRequest, ModelAndView 에 대한 Log 를 출력 한다.
+
+##### Examples
+
+applicationContext.xml 에 아래 내용을 추가
+
+```xml
+<beans:bean id="commonLoggingAspect" class="kr.co.whitelife.spring.aspect.logging.CommonLoggingAspect" />
+
+<aop:config proxy-target-class="true">
+	<aop:pointcut id="controllerAround" expression="execution(public * *..*Controller.*(..))"/>
+
+	<aop:aspect id="aloggingAspect" ref="commonLoggingAspect" order="1">
+		<aop:around method="loggingAspect" pointcut-ref="controllerAround"/>
+	</aop:aspect>
+</aop:config>
+```
