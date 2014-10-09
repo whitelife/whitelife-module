@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.co.whitelife.spring.aspect.CommonAspect;
+import kr.co.whitelife.spring.log.modelandview.ModelAndViewLog;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -25,6 +26,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @version 0.13
  */
 public class CommonLoggingAspect extends CommonAspect {
+
+	private ModelAndViewLog modelAndViewLog = new ModelAndViewLog();
 
 	/**
 	 * Controller Common Logging
@@ -115,8 +118,11 @@ public class CommonLoggingAspect extends CommonAspect {
 				report.append("\n").append("---------------------------------------------------------------------------------------------------------");
 
 				if (logger.isDebugEnabled()) {
+					modelAndViewLog.resultLog(result, logger);
 					logger.debug(report.toString());
-				} else if (logger.isInfoEnabled()) {
+				}
+
+				else if (logger.isInfoEnabled()) {
 					logger.info(report.toString());
 				}
 			}
