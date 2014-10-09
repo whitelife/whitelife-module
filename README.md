@@ -51,7 +51,7 @@ applicationContext.xml 에 아래 내용을 추가
 
 __ModelAndView Logging__
 
-ModelAndView Logger 샘플 이다. DEBUG 레벨 에서만 동작 한다.
+ModelAndView Logger 샘플 이다. Debug 레벨 에서만 동작 한다.
 
 ```
 -----------------------------------------ModelAndView Information----------------------------------------
@@ -67,7 +67,7 @@ objects     [
 
 __Servlet Logging__
 
-Servlet Logger 샘플 이다. DEBUG, INFO 레벨 에서만 동작 한다.
+Servlet Logger 샘플 이다. Debug, Info 레벨 에서만 동작 한다.
 
 ```
 ---------------------------------------Servlet Request Information---------------------------------------
@@ -85,6 +85,23 @@ parameters  [
     { sample2 - 2 }
 ]
 ---------------------------------------------------------------------------------------------------------
+```
+
+---------------------------------------
+
+
+## Log
+
+<a name="ModelAndViewLog" />
+### ModelAndViewLog
+
+Spring WEB MVC 개발 시 ModelAndView 에 대한 정보 출력 Logger 샘플은 [CommonLoggingAspect](#CommonLoggingAspect) 를 참고 하자.
+
+__Examples__
+
+```java
+ModelAndViewLog modelAndViewLog = new ModelAndViewLog();
+modelAndViewLog.resultLog(result, logger);
 ```
 
 ---------------------------------------
