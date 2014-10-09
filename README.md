@@ -1,13 +1,11 @@
 # whitelife-spring
----
 
 Spring Framework 를 사용하여 개발 시 필요한 부가 기능
 
 ## Documentation
----
 
 ### Aspect
-- CommonLoggingAspect(#CommonLoggingAspect)
+- [`CommonLoggingAspect`](#CommonLoggingAspect)
 
 ### Log
 - ModelAndViewLog
@@ -22,7 +20,6 @@ Spring Framework 를 사용하여 개발 시 필요한 부가 기능
 
 
 ## Aspect
----
 
 <a name="CommonLoggingAspect" />
 ### CommonLoggingAspect
@@ -44,3 +41,5 @@ applicationContext.xml 에 아래 내용을 추가
 	</aop:aspect>
 </aop:config>
 ```
+
+---------------------------------------
