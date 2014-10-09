@@ -137,7 +137,7 @@ View 에서는 입 맛에 맞게 구성 하도록 한다.
 
 ```java
 Common common = new Common();
-common.setPageSize(10); (Default: 10)
+common.setPageSize(10); // (Default: 10)
 common.setTotalCount(100000);
 ```
 
@@ -177,7 +177,41 @@ __Session Logging__
 <a name="AjaxView" />
 ### AjaxView
 
-준비중...
+Spring AbstractView 를 확장하여 구현 되어 있다. Ajax 기능을 담당 한다.
+
+__Examples__
+
+applicationContext.xml 에 아래 내용을 추가
+
+```xml
+<beans:bean id="ajaxView" class="kr.co.whitelife.spring.web.mvc.view.AjaxView" />
+```
+
+Spring 3.0 이상 부터는 @ResponseBody 를 사용하면 쉽게 해결이 가능 하다. 공통으로 사용하고 싶은 경우 사용 한다.
+@ModelAttribute 기능 사용 시 ModelAndView 에 자동 바인딩 되어 값이 응답 되기 때문에 라이브러리에서 제공 되는 공통 Model Common 을 사용해야 Model 이 제외된 값을 응답 한다.
+
+Controller 작성
+
+공통 Model Common 에 dataType 값을 사용 한다. 요청시 dataType=json 설정을 한다. 현재는 json 만 지원 한다.
+
+```java
+@RequestMapping(value="/ajax", method=RequestMethod.GET)
+public ModelAndView ajax(Common common) throws Exception {
+	try {
+		ModelAndView mav = new ModelAndView();
+
+		// ajax
+		mav.setView(this.ajaxView);
+		mav.addObject("dataType", common.getDataType());
+
+		// Doing...
+
+		return mav;
+	} catch (Exception e) {
+		throw e;
+	}
+}
+```
 
 ---------------------------------------
 
@@ -195,7 +229,9 @@ applicationContext.xml 에 아래 내용을 추가
 <beans:bean id="downloadView" class="kr.co.whitelife.spring.web.mvc.view.DownloadView" />
 ```
 
-Controller 작성 Common Model 사용 시 fileName, oriFileName Key 로 요청이 들어오는 경우 @ModelAttribute 자동 바인딩 되어 사용이 가능 하다. Custom Model 사용 시 Custom extends Common 하여 사용하면 된다.
+Controller 작성 
+
+Common Model 사용 시 fileName, oriFileName Key 로 요청이 들어오는 경우 @ModelAttribute 자동 바인딩 되어 사용이 가능 하다. Custom Model 사용 시 Custom extends Common 하여 사용하면 된다.
 
 Model 을 사용하지 않는 경우, addObject 포맷만 지켜주면 사용이 가능 하다.
 
