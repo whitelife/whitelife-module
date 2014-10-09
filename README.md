@@ -133,7 +133,7 @@ __Examples__
 paging 기능 사용 방법 Custom Model 사용 시 Custom extends Common 하여 사용하면 된다.
 pageSize 설정 후, totalCount 를 넣어주면 된다. 자동으로 나머지 paging 값을 넣어 준다.
 
-View 에서는 입 맛에 맞게 구성 하도록 한다.
+View 에서는 자유롭게 구성 하도록 한다.
 
 ```java
 Common common = new Common();
