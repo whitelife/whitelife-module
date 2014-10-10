@@ -115,6 +115,20 @@ public class CommonLoggingAspect extends CommonAspect {
 					}
 				}
 
+				isFirst = true;
+				for (Object obj : joinPoint.getArgs()) {
+					if (isFirst) {
+						report.append("\n").append("objects     [");
+						isFirst = false;
+					}
+
+					report.append("\n    { ").append(obj.getClass().getSimpleName()).append(" - ").append(obj.toString()).append(" }");
+
+					if (!isFirst) {
+						report.append("\n]");
+					}
+				}
+
 				report.append("\n").append("---------------------------------------------------------------------------------------------------------");
 
 				if (logger.isDebugEnabled()) {
