@@ -9,8 +9,8 @@
 *.ear
 
 # eclipse
-.classpath
-.project
+# .classpath
+# .project
 /.settings/*.*
 !.settings/org.eclipse.wst.common.component
 !.settings/org.eclipse.wst.common.project.facet.core.xml
