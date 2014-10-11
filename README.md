@@ -2,12 +2,6 @@
 
 Spring Framework 를 사용하여 개발 시 필요한 부가 기능
 
-
-## Using
-
-target/whitelife-spring-x.x.x.jar 추가 하여 사용
-
-
 ## Documentation
 
 ### Aspect
