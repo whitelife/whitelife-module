@@ -17,13 +17,17 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * Controller Common Logging
  *
+ * <pre>
+ * ModelAndView Log 추가
+ * </pre>
+ *
  * @author whitelife
  * @see Signature
  * @see StopWatch
  * @see HttpServletRequest
  * @see CommonAspect
- * @since 2014.08.21
- * @version 0.13
+ * @since 2014.10.13
+ * @version 0.2
  */
 public class CommonLoggingAspect extends CommonAspect {
 
@@ -123,17 +127,17 @@ public class CommonLoggingAspect extends CommonAspect {
 					}
 
 					report.append("\n    { ").append(obj.getClass().getSimpleName()).append(" - ").append(obj.toString()).append(" }");
+				}
 
-					if (!isFirst) {
-						report.append("\n]");
-					}
+				if (!isFirst) {
+					report.append("\n]");
 				}
 
 				report.append("\n").append("---------------------------------------------------------------------------------------------------------");
 
 				if (logger.isDebugEnabled()) {
-					modelAndViewLog.resultLog(result, logger);
 					logger.debug(report.toString());
+					modelAndViewLog.resultLog(result, logger, joinPoint.getArgs());
 				}
 
 				else if (logger.isInfoEnabled()) {
@@ -149,4 +153,3 @@ public class CommonLoggingAspect extends CommonAspect {
 		return result;
 	}
 }
-

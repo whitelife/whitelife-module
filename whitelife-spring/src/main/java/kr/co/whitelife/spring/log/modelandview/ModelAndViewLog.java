@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.co.whitelife.spring.log.Log;
 
 import org.slf4j.Logger;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -19,11 +20,44 @@ import org.springframework.web.servlet.ModelAndView;
 public class ModelAndViewLog implements Log {
 
 	public void resultLog(Object result, Logger logger) {
+		this.resultLog(result, logger, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void resultLog(Object result, Logger logger, Object[] args) {
 		if (result == null) return;
 		if (logger == null) return;
 
 		if (result instanceof ModelAndView) {
 			this.modelAndViewLog((ModelAndView) result, logger);
+		}
+
+		if (result instanceof String) {
+			ModelMap modelMap = null;
+
+			for (Object obj : args) {
+				if (obj instanceof ModelMap) {
+					modelMap = (ModelMap) obj;
+					break;
+				}
+			}
+
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(String.valueOf(result));
+			mav.addAllObjects(modelMap);
+
+			this.modelAndViewLog(mav, logger);
+		}
+
+		if (result instanceof Map) {
+			ModelAndView mav = new ModelAndView();
+
+			ModelMap modelMap = new ModelMap();
+			modelMap.addAllAttributes((Map<String, ?>) result);
+
+			mav.addAllObjects(modelMap);
+
+			this.modelAndViewLog(mav, logger);
 		}
 	}
 

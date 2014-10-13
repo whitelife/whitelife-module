@@ -19,4 +19,13 @@ public interface Log {
 	 */
 	public void resultLog(Object result, Logger logger);
 
+	/**
+	 * 결과 로그
+	 *
+	 * @param result 결과 값
+	 * @param logger logger object
+	 * @param args Object[]
+	 */
+	public void resultLog(Object result, Logger logger, Object[] args);
+
 }
