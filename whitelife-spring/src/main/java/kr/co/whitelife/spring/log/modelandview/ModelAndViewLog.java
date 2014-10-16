@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.co.whitelife.spring.log.Log;
+import kr.co.whitelife.spring.util.HttpSupportUtils;
 
 import org.slf4j.Logger;
 import org.springframework.ui.ModelMap;
@@ -34,7 +35,7 @@ public class ModelAndViewLog implements Log {
 	@SuppressWarnings("unchecked")
 	public void resultLog(Object result, Logger logger, Object[] args) {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-		boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+		boolean isAjax = HttpSupportUtils.isAjax(request);
 
 		if (result == null) return;
 		if (logger == null) return;
