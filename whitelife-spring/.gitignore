@@ -9,8 +9,8 @@
 *.ear
 
 # eclipse
-# .classpath
-# .project
+.classpath
+.project
 /.settings/*.*
 /target
 
