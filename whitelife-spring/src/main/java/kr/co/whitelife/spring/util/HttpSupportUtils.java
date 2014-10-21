@@ -23,4 +23,33 @@ public class HttpSupportUtils {
 		return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 	}
 
+	/**
+	 * Http query string 생성
+	 *
+	 * @param parameters
+	 * @return querystring
+	 */
+	public static String makeQueryString(String... parameters) {
+		StringBuffer buffer = new StringBuffer();
+		boolean isFirst = false;
+
+		buffer.append("?");
+
+		if (parameters == null) return "";
+		if (parameters.length == 0) return "";
+
+		for (String parameter : parameters) {
+			if (isFirst) {
+				buffer.append("&");
+			}
+
+			if (!isFirst) {
+				isFirst = true;
+			}
+
+			buffer.append(parameter);
+		}
+
+		return buffer.toString();
+	}
 }
