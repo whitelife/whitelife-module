@@ -17,8 +17,8 @@ import org.springframework.util.FileCopyUtils;
  * DownloadView
  *
  * @author whitelife
- * @since 2014.09.30
- * @version 0.1
+ * @since 2014.10.30
+ * @version 0.12
  */
 public class DownloadView extends AbstractCommonView {
 
@@ -35,18 +35,14 @@ public class DownloadView extends AbstractCommonView {
 	 * @throws UnsupportedEncodingException
 	 */
 	private void setDownloadFileName(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		String userAgent = request.getHeader("User-Agent");
+		fileName = URLEncoder.encode(fileName, "utf-8").replaceAll("\\+", "%20");
 
-		boolean isIe = userAgent.indexOf("MSIE") != -1;
-
-		if(isIe){
-			fileName = URLEncoder.encode(fileName, "utf-8");
-		} else {
-			fileName = new String(fileName.getBytes("utf-8"));
+		if (logger.isDebugEnabled()) {
+			logger.debug("fileName: " + fileName);
 		}
 
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
-		response.setHeader("Content-Transfer-Encoding", "binary");
+        response.setHeader("Content-Transfer-Encoding", "binary");
 	}
 
 	/**
